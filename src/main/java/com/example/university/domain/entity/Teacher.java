@@ -10,11 +10,11 @@ import java.util.Set;
 
 
 @Entity
-@Table(name = "student")
+@Table(name = "teacher")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Student {
+public class Teacher {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
@@ -26,5 +26,5 @@ public class Student {
     @JoinTable(name = "teacher_student",
             joinColumns = { @JoinColumn(name = "student_id", referencedColumnName = "id") },
             inverseJoinColumns = { @JoinColumn(name = "teacher_id", referencedColumnName = "id") })
-    private Set<Teacher> teachers;
+    private Set<Student> students;
 }

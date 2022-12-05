@@ -1,9 +1,9 @@
 package com.example.university.controller;
 
 import com.example.university.domain.CommonResponse;
-import com.example.university.domain.entity.Student;
+import com.example.university.domain.entity.Teacher;
 import com.example.university.exception.ResourceNotFoundException;
-import com.example.university.service.StudentService;
+import com.example.university.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,40 +12,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/student")
-public class StudentController {
+@RequestMapping("/teacher")
+public class TeacherController {
 
-    private final StudentService studentService;
+    private final TeacherService teacherService;
 
     @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
+    public TeacherController(TeacherService teacherService) {
+        this.teacherService = teacherService;
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CommonResponse> findStuById(@PathVariable String id) {
-        return new ResponseEntity<>(studentService.findById(id), HttpStatus.OK);
+    public ResponseEntity<CommonResponse> findTeaById(@PathVariable String id) {
+        return new ResponseEntity<>(teacherService.findById(id), HttpStatus.OK);
     }
 
     @GetMapping()
     public ResponseEntity<CommonResponse> findAll() {
-        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(teacherService.findAll(), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<CommonResponse> delete(@PathVariable String id) {
-        return new ResponseEntity<>(studentService.deleteById(id), HttpStatus.OK);
+        return new ResponseEntity<>(teacherService.deleteById(id), HttpStatus.OK);
     }
 
-    //path: /student, method: post ,  create student
+    //path: /teacher, method: post ,  create teacher
     @PostMapping
-    public ResponseEntity<CommonResponse> insert(@RequestBody Student student) {
-        return new ResponseEntity<>(studentService.insert(student), HttpStatus.CREATED);
+    public ResponseEntity<CommonResponse> insert(@RequestBody Teacher teacher) {
+        return new ResponseEntity<>(teacherService.insert(teacher), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<CommonResponse> update(@PathVariable String id, @RequestBody String name) {
-        return new ResponseEntity<>(studentService.update(id, name), HttpStatus.OK);
+        return new ResponseEntity<>(teacherService.update(id, name), HttpStatus.OK);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)

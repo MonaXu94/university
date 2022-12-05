@@ -46,4 +46,24 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.insert(stu);
         return new CommonResponse(0, new Date(), student.getId());
     }
+
+    @Override
+    public CommonResponse update(String id, String name) {
+        Optional<Student> stuDB = studentRepository.findById(id);
+        if (stuDB.isPresent()) {
+            Student s = stuDB.get();
+            s.setName(name);
+            studentRepository.save(s);
+            return new CommonResponse(0, new Date(), "Updated Successfully");
+        }
+        return new CommonResponse(404, new Date(), "Could not find student with id:" + id);
+    }
+
+    @Override
+    public CommonResponse deleteById(String id) {
+        studentRepository.deleteById(id);
+        return new CommonResponse(0, new Date(), "Deleted student: " + id);
+    }
+
+
 }
