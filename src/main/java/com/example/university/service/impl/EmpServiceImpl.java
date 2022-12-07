@@ -17,14 +17,6 @@ class Response {
     Employee[] data;
     @JsonProperty("message")
     String message;
-
-    public Response(String status, Employee[] data, String message) {
-        this.status = status;
-        this.data = data;
-        this.message = message;
-    }
-
-    public Response(){}
 }
 
 class Employee{
@@ -42,17 +34,6 @@ class Employee{
     public int getAge(){
         return this.employee_age;
     }
-
-    public Employee(){}
-
-    public Employee(int id, String employee_name, int employee_salary, int employee_age, String profile_image) {
-        this.id = id;
-        this.employee_name = employee_name;
-        this.employee_salary = employee_salary;
-        this.employee_age = employee_age;
-        this.profile_image = profile_image;
-    }
-
 }
 @Service
 public class EmpServiceImpl implements EmpService{
